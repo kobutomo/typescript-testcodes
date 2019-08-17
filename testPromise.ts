@@ -4,7 +4,7 @@ const timeout = (second: number) => {
       setTimeout(() => resolve(console.log(second.toString() + "秒経過")), second * 1000)
     }
     else {
-      setTimeout(() => reject(console.log("timeover")), second * 1000)
+      setTimeout(() => reject(console.log("timeover")), second * 100)
     }
   })
 }

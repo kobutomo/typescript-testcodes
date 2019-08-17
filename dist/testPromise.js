@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -40,14 +41,14 @@ var timeout = function (second) {
             setTimeout(function () { return resolve(console.log(second.toString() + "秒経過")); }, second * 1000);
         }
         else {
-            setTimeout(function () { return reject(console.log("timeover")); }, second * 1000);
+            setTimeout(function () { return reject(console.log("timeover")); }, second * 100);
         }
     });
 };
 var outputTimeLog = function (second) { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, timeout(second)["catch"](function (err) { return err; })];
+            case 0: return [4 /*yield*/, timeout(second).catch(function (err) { return err; })];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
