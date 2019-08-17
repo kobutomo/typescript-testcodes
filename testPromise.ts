@@ -1,27 +1,25 @@
 const timeout = (second: number) => {
-  return new Promise<string>((resolve, reject) => {
-    if (second < 2) {
-      setTimeout(() => resolve(second.toString() + "秒経過"), second * 1000)
+  return new Promise<void>((resolve, reject) => {
+    if (second < 4) {
+      setTimeout(() => resolve(console.log(second.toString() + "秒経過")), second * 1000)
     }
     else {
-      setTimeout(() => reject("timeover"), second * 1000)
-
+      setTimeout(() => reject(console.log("timeover")), second * 1000)
     }
   })
 }
-const oneSecond = async () => {
-  console.log(await timeout(1).catch(err => err))
+
+const outputTimeLog = async (second: number) => {
+  await timeout(second).catch(err => err)
 }
-const twoSeconds = async () => {
-  console.log(await timeout(2).catch(err => err))
-}
-const threeSeconds = async () => {
-  console.log(await timeout(3).catch(err => err))
-}
+
 const testFunc = async () => {
   console.log("start")
-  oneSecond()
-  twoSeconds()
-  threeSeconds()
+  outputTimeLog(1)
+  outputTimeLog(2)
+  outputTimeLog(3)
+  outputTimeLog(4)
+  outputTimeLog(5)
+  outputTimeLog(6)
 }
 testFunc()
