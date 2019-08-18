@@ -41,7 +41,7 @@ var timeout = function (second) {
             setTimeout(function () { return resolve(console.log(second.toString() + "秒経過")); }, second * 1000);
         }
         else {
-            setTimeout(function () { return reject(console.log("timeover")); }, second * 100);
+            setTimeout(function () { return reject(console.log("timeover")); }, second * 1000);
         }
     });
 };
