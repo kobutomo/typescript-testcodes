@@ -7,3 +7,4 @@ var module_1 = __importDefault(require("./modules/module"));
 var module2_1 = __importDefault(require("./modules/module2"));
 console.log(module_1.default(1));
 console.log(module2_1.default("aaa"));
+console.log(module_1.default(true));
