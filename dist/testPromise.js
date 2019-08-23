@@ -36,22 +36,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 var timeout = function (second) {
+    //<() => string>はresolveの引数の型
     return new Promise(function (resolve, reject) {
         if (second < 4) {
-            setTimeout(function () { return resolve(console.log(second.toString() + "秒経過")); }, second * 1000);
+            setTimeout(function () { return resolve(function () {
+                return second.toString();
+            }); }, second * 1000);
         }
         else {
-            setTimeout(function () { return reject(console.log("timeover")); }, second * 1000);
+            // rejectの引数はvoidである必要はない。
+            // この場合stringが引数に入ってるが問題ない。
+            // rejectの引数に型アノテーションできない？
+            // 我々はその謎を解明すべくアマゾンの奥地へ向かった。
+            // 参考:https://orgachem.hatenablog.com/entry/2016/05/25/185157
+            setTimeout(function () { return reject("hey"); }, second * 1000);
         }
     });
 };
+// async functionが値を返す場合、例えばstrirng型を返す場合、
+// 関数の型は() => stringではなく() => Promise<string>となる。
+// stringをreturnしているが、
+// 厳密にいうとresolveでstringを引数にとるPromiseを返している。
+// つまり、返り値を使いたい場合awaitが必要ということ。
 var outputTimeLog = function (second) { return __awaiter(_this, void 0, void 0, function () {
+    var data, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, timeout(second).catch(function (err) { return err; })];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, timeout(second)];
             case 1:
-                _a.sent();
-                return [2 /*return*/];
+                data = _a.sent();
+                console.log(data());
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                console.log(err_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
@@ -67,4 +89,5 @@ var testFunc = function () { return __awaiter(_this, void 0, void 0, function ()
         return [2 /*return*/];
     });
 }); };
-testFunc();
+// testFunc()
+console.log(Array(5).map(function (_, i) { return i; }).slice());

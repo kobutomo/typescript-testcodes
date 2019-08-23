@@ -18,12 +18,11 @@ const timeout = (second: number) => {
   })
 }
 
-// async functionが値を返す場合、
-// 例えばstrirng型を返す場合、関数の型は
-// () => stringではなく() => Promise<string>となる。
-// stringをreturnしているが、厳密にいうとresolveで
-// stringを引数にとるPromiseを返している。
-// つまり返り値を使いたい場合awaitが必要。
+// async functionが値を返す場合、例えばstrirng型を返す場合、
+// 関数の型は() => stringではなく() => Promise<string>となる。
+// stringをreturnしているが、
+// 厳密にいうとresolveでstringを引数にとるPromiseを返している。
+// つまり、返り値を使いたい場合awaitが必要ということ。
 const outputTimeLog = async (second: number) => {
   try {
     const data = await timeout(second)
