@@ -20,7 +20,7 @@
   "devDependencies": {
     "typescript": "^3.5.3",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
